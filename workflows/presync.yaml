@@ -26,6 +26,8 @@ spec:
         template: delete-sts
         continueOn:
           failed: true
+    - - name: sleep
+        template: sleep
   - name: start-maintenance-pod
     resource:
       action: apply 
@@ -96,3 +98,9 @@ spec:
         kind: Workflow 
         metadata:
           name: postsync 
+  - name: sleep
+    container:
+      image: alpine:latest
+      command: [sh, -c]
+      args: ["echo sleeping for 300s; sleep 10; echo done"]
+
