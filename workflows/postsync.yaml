@@ -1,0 +1,31 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Workflow
+metadata:
+  name: postsync
+  annotations:
+    argocd.argoproj.io/hook: PostSync
+spec:
+  entrypoint: actual-workflow
+  podGC:
+    # pod gc strategy must be one of the following
+    # * OnPodCompletion - delete pods immediately when pod is completed (including errors/failures)
+    # * OnPodSuccess - delete pods immediately when pod is successful
+    # * OnWorkflowCompletion - delete pods when workflow is completed
+    # * OnWorkflowSuccess - delete pods when workflow is successful
+    strategy: OnPodSuccess
+  serviceAccountName: workflow
+  templates:
+  - name: actual-workflow
+    steps:
+    - - name: delete-maintenance-pod
+        template: delete-maintenance-pod        
+  - name: delete-maintenance-pod
+    resource:
+      action: delete
+      flags: ["--ignore-not-found"]
+      manifest: |
+        apiVersion: apps/v1
+        kind: Deployment
+        metadata:
+          name: maintenance
+
