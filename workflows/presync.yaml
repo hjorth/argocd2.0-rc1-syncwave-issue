@@ -21,6 +21,8 @@ spec:
         template: start-maintenance-pod
     - - name: patch-service
         template: patch-service
+        continueOn:
+          failed: true
     - - name: delete-sts
         template: delete-sts
         continueOn:
@@ -29,7 +31,7 @@ spec:
         template: sleep
   - name: start-maintenance-pod
     resource:
-      action: create 
+      action: apply 
       successCondition: status.readyReplicas > 0
       manifest: |
         apiVersion: apps/v1
