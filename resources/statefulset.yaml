@@ -29,6 +29,7 @@ spec:
           successThreshold: 1
           timeoutSeconds: 5
       - name: nginx2
-        image: k8s.gcr.io/nginx-slim:0.8 
-        ports:
-        - containerPort: 8080
+        image: alpine:latest
+        command: [sh, -c]
+        args: ["echo sleeping for 600s; sleep 600; echo done"]
+
