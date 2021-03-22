@@ -29,7 +29,7 @@ spec:
         template: sleep
   - name: start-maintenance-pod
     resource:
-      action: apply 
+      action: create 
       successCondition: status.readyReplicas > 0
       manifest: |
         apiVersion: apps/v1
