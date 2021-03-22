@@ -28,7 +28,7 @@ spec:
           failed: true
   - name: start-maintenance-pod
     resource:
-      action: create
+      action: apply 
       successCondition: status.readyReplicas > 0
       manifest: |
         apiVersion: apps/v1
