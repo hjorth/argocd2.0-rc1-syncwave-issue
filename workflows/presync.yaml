@@ -4,7 +4,6 @@ metadata:
   name: presync
   annotations:
     argocd.argoproj.io/hook: PreSync
-    argocd.argoproj.io/hook-delete-policy: HookFailed
 spec:
   entrypoint: actual-workflow
   podGC:
