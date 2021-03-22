@@ -24,7 +24,11 @@ spec:
             path: /
             port: 80
             scheme: HTTP
-          initialDelaySeconds: 120
+          initialDelaySeconds: 1
           periodSeconds: 30
           successThreshold: 1
           timeoutSeconds: 5
+      - name: nginx2
+        image: k8s.gcr.io/nginx-slim:0.8 
+        ports:
+        - containerPort: 8080
