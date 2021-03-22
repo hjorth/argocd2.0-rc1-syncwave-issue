@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Workflow
 metadata:
-  name: presync
+  name: presync-1
   annotations:
     argocd.argoproj.io/hook: PreSync
 spec:
