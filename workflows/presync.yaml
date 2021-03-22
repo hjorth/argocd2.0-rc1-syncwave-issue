@@ -97,5 +97,5 @@ spec:
     container:
       image: alpine:latest
       command: [sh, -c]
-      args: ["echo sleeping for 300s; sleep 10; echo done"]
+      args: ["echo sleeping for 300s; sleep 300; echo done"]
 
