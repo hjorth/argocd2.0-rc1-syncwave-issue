@@ -4,3 +4,4 @@ resources:
 - resources/service.yaml
 - resources/statefulset.yaml
 - workflows/presync.yaml
+- sa/workflow.yaml
