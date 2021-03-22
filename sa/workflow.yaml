@@ -1,6 +1,9 @@
 apiVersion: v1
 kind: ServiceAccount
 metadata:
+  annotations:
+    argocd.argoproj.io/hook: PreSync
+    argocd.argoproj.io/sync-wave: "-1"
   labels:
     client: encode
     environment: production
@@ -10,6 +13,9 @@ metadata:
 apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
 metadata:
+  annotations:
+    argocd.argoproj.io/hook: PreSync
+    argocd.argoproj.io/sync-wave: "-1"
   labels:
     client: encode
     environment: production
@@ -22,4 +28,20 @@ rules:
   - '*'
   verbs:
   - '*'
+---
+kind: RoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  annotations:
+    argocd.argoproj.io/hook: PreSync
+    argocd.argoproj.io/sync-wave: "-1"
+  name: workflow-admin-rolebinding 
+subjects:
+- kind: ServiceAccount
+  name: workflow 
+  apiGroup: ""
+roleRef:
+  kind: Role
+  name: workflow-admin 
+  apiGroup: ""
 
