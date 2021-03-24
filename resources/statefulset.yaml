@@ -2,6 +2,8 @@ apiVersion: apps/v1
 kind: StatefulSet
 metadata:
   name: nginx-main 
+  annotations:
+    argocd.argoproj.io/sync-wave: '1'
 spec:
   selector:
     matchLabels:
@@ -15,7 +17,7 @@ spec:
     spec:
       containers:
       - name: nginx
-        image: k8s.gcr.io/nginx-slim:0.1 
+        image: nginx:latest
         ports:
         - containerPort: 80
         readinessProbe:
