@@ -32,4 +32,3 @@ spec:
         image: alpine:latest
         command: [sh, -c]
         args: ["echo sleeping for 600s; sleep 600; echo done"]
-
