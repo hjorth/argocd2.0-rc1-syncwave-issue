@@ -3,6 +3,3 @@ kind: Kustomization
 resources:
 - resources/service.yaml
 - resources/statefulset.yaml
-- workflows/presync.yaml
-- workflows/postsync.yaml
-- sa/workflow.yaml
